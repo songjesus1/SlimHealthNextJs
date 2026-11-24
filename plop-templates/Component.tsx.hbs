@@ -1,0 +1,17 @@
+import React from 'react'; 
+import './{{pascalCase name}}.css';
+import '../../index.css'; 
+
+export interface {{pascalCase name}}Props { 
+  children?: React.ReactNode; 
+} 
+
+export const {{pascalCase name}} = ({ 
+  children, 
+}: {{pascalCase name}}Props) => { 
+  return (
+    <div className="{{camelCase name}}">
+      {children}
+    </div>
+  ); 
+};
