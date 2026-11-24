@@ -3,7 +3,9 @@ import "./Spacer.css";
 import "../../app/globals.css";
 
 export interface SpacerProps {
+  /** 높이 */
   height?: number;
+  /** 너비 */
   width?: number;
 }
 

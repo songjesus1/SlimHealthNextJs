@@ -7,6 +7,7 @@ import Image from "next/image";
 import lightningYellow from "../../assets/lightning_yellow.png";
 
 export interface LogoProps {
+  /** 로고 옆에 타이틀 텍스트 표시 여부 */
   isTitle?: boolean;
 }
 
