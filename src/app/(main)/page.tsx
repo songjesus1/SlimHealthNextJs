@@ -1,69 +1,84 @@
+import { ContentContainer } from "@/src/components/ContentContainer/ContentContainer";
+import { Introduction } from "@/src/components/Introduction";
+import { Logo } from "@/src/components/Logo";
+import { MainGuide } from "@/src/components/MainGuide";
+import { Spacer } from "@/src/components/Spacer";
+import { Text } from "@/src/components/Text";
+import { TextStyle } from "@/src/components/Text/TextStyle";
 import Image from "next/image";
+import mainImage from "../../assets/mainImage.png";
+import { FlexLayout } from "@/src/components/FlexLayout";
+import { FlexAlign } from "@/src/components/FlexLayout/FlexAlign";
+import { FlexDirection } from "@/src/components/FlexLayout/FlexDirection";
+import { CardLayout } from "@/src/components/CardLayout";
+
+const guideList = [
+  {
+    key: "heart",
+    iconType: "heart",
+    title: "건강 데이터 입력",
+    content: "키, 나이, 체중 및 대사증후군 5대 요소를 간편하게 입력하세요",
+  },
+  {
+    key: "arrow",
+    iconType: "arrow",
+    title: "AI 건강 예측",
+    content: "머신러닝 알고리즘으로 건강 상태를 예측하고 시각화합니다",
+  },
+  {
+    key: "shield",
+    iconType: "shield",
+    title: "개선 가이드",
+    content: "개인 맞춤형 건강 개선 방안을 제공받으세요",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert h-5 w-[100px]"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the{" "}
-            <code className="rounded bg-black/[.06] px-1.5 py-0.5 font-mono text-[0.9em] dark:bg-white/[.08]">
-              page.tsx
-            </code>{" "}
-            file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point? Head to the Next.js documentation or
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=app-router-template&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>
-            , or
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=app-router-template&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              learning
-            </a>
-            .
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
+    <ContentContainer>
+      {/* 타이틀 부분 */}
+      <FlexLayout
+        direction={FlexDirection.column}
+        align={FlexAlign.center}
+        style={{ padding: 10 }}
+      >
+        <Spacer height={30} />
+        <Logo isTitle />
+        <Text textStyle={TextStyle.medium}>
+          AI 기반 건강 예측 및 관리 시스템
+        </Text>
+      </FlexLayout>
+      {/* 메인 이미지 부분 */}
+      <Spacer height={20} />
+      <Image src={mainImage} alt="Main Image" width={1400} height={1120} />
+      <Spacer height={20} />
+      {/* 소개 부분 */}
+      <CardLayout style={{ width: "90%" }}>
+        <FlexLayout direction={FlexDirection.column}>
+          <Introduction
+            title="프로젝트 소개"
+            content="슬림헬스는 인공지능 기술을 활용하여 개인의 건강 데이터를 분석하고 예측하는 혁신적인 건강 관리 플랫폼입니다."
+          />
+          <FlexLayout
+            align={FlexAlign.center}
+            direction={FlexDirection.row}
+            gap={50}
+            style={{ padding: 50 }}
           >
-            <Image
-              className="dark:invert h-[14px] w-4"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={14}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=app-router-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+            {guideList.map((item) => {
+              return (
+                <MainGuide
+                  key={item.key}
+                  content={item.content}
+                  iconType={item.iconType}
+                  title={item.title}
+                />
+              );
+            })}
+          </FlexLayout>
+        </FlexLayout>
+      </CardLayout>
+      <Spacer height={30} />
+    </ContentContainer>
   );
 }
