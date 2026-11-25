@@ -2,6 +2,8 @@
   /* 🎨 커스텀 Hex 컬러 변수 */
   --color-black: #000000;
   --color-white: #ffffff;
+  --color-gray: #808080;
+  --color-blue: #0000ff;
 }
 
 @font-face {

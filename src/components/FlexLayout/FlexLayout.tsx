@@ -23,7 +23,7 @@ export const FlexLayout = ({
   isInline,
   children,
   direction,
-  gap,
+  gap = 10,
   align,
   style,
 }: FlexLayoutProps) => {

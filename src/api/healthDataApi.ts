@@ -1,0 +1,60 @@
+import client from "./axios";
+import { HealthDataForm } from "@/src/model/health/HealthDataForm";
+
+const healthBasePath = "/api/health";
+const ocrBasePath = "/api/ocr";
+
+//건강 데이터 저장 api
+export const saveHealthDataApi = async (body: HealthDataForm) => {
+  let result;
+  if (body.id) {
+    result = await client.post(`${healthBasePath}/update/${body.id}`, body);
+  } else {
+    result = await client.post(`${healthBasePath}/create`, body);
+  }
+  return result.data;
+};
+
+//건강 데이터 가져오기 및 예측 api
+export const getHealthDataApi = async (id: string) => {
+  const result = await client.get(`${healthBasePath}/predict/${id}`, {});
+  return result.data;
+};
+
+//건강 조언 생성 api
+export const getHealthAdviceApi = async (id: string) => {
+  const result = await client.get(`${healthBasePath}/advice/${id}`, {});
+  return result.data;
+};
+
+//ocr 데이터 입력 api
+export const ocrInputApi = async (files: File[]) => {
+  const formData = new FormData();
+  files.map((file) => {
+    formData.append("files", file);
+  });
+  const result = await client.post(`${ocrBasePath}`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
+  return result.data;
+};
+
+//건강 데이터 저장 내역 조회 api
+export const getHealthDataHistories = async (page: number) => {
+  const result = await client.post(`${healthBasePath}/list`, { page });
+  return result.data;
+};
+
+//최신 데이터 가져오기 api
+export const getRecentData = async () => {
+  const data = await getHealthDataHistories(1);
+  return data[0];
+};
+
+//건강 데이터 삭제
+export const deleteDataHistory = async (id: string) => {
+  const result = await client.delete(`${healthBasePath}/delete/${id}`, {});
+  return result.data;
+};

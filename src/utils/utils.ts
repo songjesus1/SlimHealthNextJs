@@ -1,3 +1,5 @@
+export const userInfoKey = "userInfo";
+
 export const getEnumReference = <T extends Record<string, unknown>>(
   enumObject: T,
   value: T[keyof T],
