@@ -1,6 +1,8 @@
 import axios from "axios";
 import { userInfoKey } from "../utils/utils";
 import { authBasePath } from "./userApi";
+import { redirect } from "next/navigation";
+import { ROUTES } from "../utils/routeUtils";
 
 const refreshPath = `${authBasePath}/refresh`;
 
@@ -13,9 +15,12 @@ const client = axios.create({
 });
 
 client.interceptors.request.use(
-  (config: any) => {
+  (config) => {
+    if (typeof window === "undefined") {
+      return config;
+    }
     const userInfo = JSON.parse(
-      localStorage.getItem(userInfoKey) || "null",
+      window.localStorage.getItem(userInfoKey) || "null",
     ).info;
     const accessToken = userInfo?.accessToken || "";
 
@@ -25,13 +30,13 @@ client.interceptors.request.use(
 
     return config;
   },
-  (error: any) => Promise.reject(error),
+  (error) => Promise.reject(error),
 );
 
 client.interceptors.response.use(
-  (response: any) => response,
+  (response) => response,
 
-  async (error: any) => {
+  async (error) => {
     const originalRequest = error.config;
 
     // access token 만료
@@ -41,7 +46,7 @@ client.interceptors.response.use(
       try {
         // refresh token으로 access token 재발급
         const userInfo = JSON.parse(
-          localStorage.getItem(userInfoKey) || "null",
+          window.localStorage.getItem(userInfoKey) || "null",
         ).info;
         const refreshToken = userInfo?.refreshToken || "";
         const response = await loginClient.post(refreshPath, { refreshToken });
@@ -50,7 +55,7 @@ client.interceptors.response.use(
         //const newRefreshToken = response.data.refreshToken;
 
         // 새 토큰 저장
-        localStorage.setItem(
+        window.localStorage.setItem(
           userInfoKey,
           JSON.stringify({
             info: {
@@ -69,11 +74,9 @@ client.interceptors.response.use(
         return client(originalRequest);
       } catch (refreshError) {
         // refresh token도 만료됐을 경우
-        localStorage.removeItem(userInfoKey);
+        window.localStorage.removeItem(userInfoKey);
 
-        window.location.href = "/login";
-
-        return Promise.reject(refreshError);
+        redirect(ROUTES.LOGIN); // 로그인 페이지로 리다이렉트
       }
     }
 

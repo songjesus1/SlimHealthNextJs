@@ -27,7 +27,8 @@ export const TopNavigation = ({
   menuList,
 }: TopNavigationProps) => {
   const processLogout = () => {
-    localStorage.removeItem(userInfoKey);
+    window.localStorage.removeItem(userInfoKey);
+    window.dispatchEvent(new Event("userInfoChanged"));
   };
   const { openDialog, closeDialog } = useContext(Context);
   const router = useRouter();
