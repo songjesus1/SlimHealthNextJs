@@ -1,10 +1,9 @@
 import axios from "axios";
 import { userInfoKey } from "../utils/utils";
-import { authBasePath } from "./userApi";
 import { redirect } from "next/navigation";
 import { ROUTES } from "../utils/routeUtils";
 
-const refreshPath = `${authBasePath}/refresh`;
+const refreshPath = `/api/auth/refresh`;
 
 export const loginClient = axios.create({
   baseURL: process.env.NEXT_PUBLIC_API_URL,

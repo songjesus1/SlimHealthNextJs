@@ -1,5 +1,8 @@
 export const userInfoKey = "userInfo";
 
+export const maxAge = 200;
+export const inputFixWidth = 140;
+
 export const getEnumReference = <T extends Record<string, unknown>>(
   enumObject: T,
   value: T[keyof T],
