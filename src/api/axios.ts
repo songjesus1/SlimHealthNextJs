@@ -7,11 +7,11 @@ import { ROUTES } from "../utils/routeUtils";
 const refreshPath = `${authBasePath}/refresh`;
 
 export const loginClient = axios.create({
-  baseURL: process.env.VITE_API_URL,
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
 });
 
 const client = axios.create({
-  baseURL: process.env.VITE_API_URL,
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
 });
 
 client.interceptors.request.use(

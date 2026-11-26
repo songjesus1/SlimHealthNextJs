@@ -1,4 +1,4 @@
-import client, { loginClient } from "./axios";
+import { loginClient } from "./axios";
 import { JoinForm } from "@/src/model/user/JoinForm";
 import { LoginForm } from "@/src/model/user/LoginForm";
 

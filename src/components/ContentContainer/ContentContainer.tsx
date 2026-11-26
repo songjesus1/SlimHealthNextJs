@@ -5,7 +5,16 @@ import "../../app/globals.css";
 export interface ContentContainerProps {
   /** 자식 뷰 */
   children?: React.ReactNode;
+  /** 기타 스타일 */
+  style?: React.CSSProperties;
 }
-export const ContentContainer = ({ children }: ContentContainerProps) => {
-  return <div className="contentContainer">{children}</div>;
+export const ContentContainer = ({
+  children,
+  style,
+}: ContentContainerProps) => {
+  return (
+    <div className="contentContainer" style={style}>
+      {children}
+    </div>
+  );
 };
