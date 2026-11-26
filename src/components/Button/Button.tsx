@@ -3,6 +3,7 @@ import "./Button.css";
 import "../../app/globals.css";
 import { Text } from "../Text";
 import { TextAlign } from "../Text/TextAlign";
+import { AppColor } from "@/src/enums/AppColor";
 
 export interface ButtonProps {
   /** 버튼 내용 */
@@ -19,7 +20,12 @@ export const Button = ({ children, onClick, isDisabled }: ButtonProps) => {
       className={`button ${isDisabled && "disabled"}`}
       onClick={isDisabled ? () => {} : onClick}
     >
-      <Text align={TextAlign.center}>{children}</Text>
+      <Text
+        align={TextAlign.center}
+        color={isDisabled ? AppColor.white : AppColor.black}
+      >
+        {children}
+      </Text>
     </div>
   );
 };
