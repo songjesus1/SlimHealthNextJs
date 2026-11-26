@@ -17,13 +17,14 @@ export interface MainGuideProps {
   content: string;
 }
 
+const ICONS = {
+  heart,
+  arrow,
+  shield,
+};
+
 export const MainGuide = ({ iconType, title, content }: MainGuideProps) => {
-  const icon =
-    iconType === MainGuideIconType.heart
-      ? heart
-      : iconType === MainGuideIconType.arrow
-        ? arrow
-        : shield;
+  const icon = ICONS[iconType as keyof typeof ICONS];
   return (
     <div className="mainGuide">
       <Image src={icon} alt="가이드 이미지" width={128} height={128} />
