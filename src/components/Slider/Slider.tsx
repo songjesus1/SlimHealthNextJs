@@ -83,7 +83,7 @@ export const Slider = ({
     };
   }, []);
 
-  const centerValue = ((maxValue + minValue) / 2).toFixed();
+  const centerValue = Math.trunc((maxValue + minValue) / 2);
   const valueArray = [maxValue, centerValue, minValue];
 
   return (

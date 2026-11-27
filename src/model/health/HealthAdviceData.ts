@@ -1,5 +1,5 @@
 export class HealthAdviceData {
-  diet?: string;
-  exercise?: string;
-  habit?: string;
+  indicator?: string;
+  status?: string;
+  message?: string;
 }
