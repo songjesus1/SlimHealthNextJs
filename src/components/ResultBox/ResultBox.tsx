@@ -1,7 +1,7 @@
 import React from "react";
 import "./ResultBox.css";
 import "../../app/globals.css";
-import { ResultBoxStatus, ResultBoxStatusItems } from "./ResultBoxStatus";
+import { ResultBoxStatusItems } from "./ResultBoxStatus";
 
 export interface ResultBoxProps {
   /** 제목 */
