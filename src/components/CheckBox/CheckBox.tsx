@@ -9,14 +9,18 @@ import { TextStyle } from "../Text/TextStyle";
 
 export interface CheckBoxProps {
   /** 체크박스 제목 */
-  title: string;
+  title?: string;
   /** 체크 여부 */
   isChecked: boolean;
   /** 클릭 이벤트 */
-  onClick: () => void;
+  onClick?: () => void;
 }
 
-export const CheckBox = ({ title, isChecked, onClick }: CheckBoxProps) => {
+export const CheckBox = ({
+  title = "",
+  isChecked,
+  onClick = () => {},
+}: CheckBoxProps) => {
   return (
     <div className="checkBox" onClick={onClick}>
       <Text textStyle={TextStyle.medium}>{title}</Text>

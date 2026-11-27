@@ -25,36 +25,42 @@ export const KPIInputFields = [
     placeholder: "현재 허리둘레(cm) 입력",
     key: "waist",
     unit: "cm",
+    type: "number",
   },
   {
     title: "HDL 콜레스테롤",
     placeholder: "현재 HDL 콜레스테롤 수치(mg/dl) 입력",
     key: "hdl",
     unit: "mg/dL",
+    type: "number",
   },
   {
     title: "수축기혈압",
     placeholder: "현재 수축기 혈압(mmHg) 입력",
     key: "sbp",
     unit: "mmHg",
+    type: "number",
   },
   {
     title: "이완기혈압",
     placeholder: "현재 이완기 혈압(mmHg) 입력",
     key: "dbp",
     unit: "mmHg",
+    type: "number",
   },
   {
     title: "공복혈당",
     placeholder: "현재 혈당(mg/dl) 입력",
     key: "bs",
     unit: "mg/dL",
+    type: "number",
   },
   {
     title: "중성지방",
     placeholder: "현재 중성지방(mg/dl) 입력",
     key: "tg",
     unit: "mg/dL",
+    type: "number",
   },
 ];
 
@@ -106,6 +112,53 @@ export const dataInputFields: DataInputFieldModel[] = [
     placeholder: "현재 중성지방(mg/dl) 입력",
     key: "triglyceride",
     unit: "mg/dl",
+  },
+];
+
+export const inputFields = [
+  {
+    title: "키",
+    placeholder: "현재 키(cm) 입력",
+    key: "height",
+    unit: "cm",
+    type: "number",
+  },
+  {
+    title: "체중",
+    placeholder: "현재 체중(kg) 입력",
+    key: "weight",
+    unit: "kg",
+    type: "number",
+  },
+  ...KPIInputFields,
+];
+
+export const totalInputFields = [
+  ...inputFields,
+  {
+    title: "나이",
+    placeholder: "현재 나이 입력",
+    key: "age",
+    type: "number",
+    unit: "",
+  },
+  {
+    title: "음주여부",
+    key: "drink",
+    type: "boolean",
+    unit: "",
+  },
+  {
+    title: "흡연여부",
+    key: "smoke",
+    type: "boolean",
+    unit: "",
+  },
+  {
+    title: "성별",
+    key: "gender",
+    type: "string",
+    unit: "",
   },
 ];
 

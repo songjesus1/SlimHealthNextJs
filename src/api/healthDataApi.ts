@@ -54,7 +54,7 @@ export const getRecentData = async () => {
 };
 
 //건강 데이터 삭제
-export const deleteDataHistory = async (id: string) => {
+export const deleteDataHistory = async (id: number) => {
   const result = await client.delete(`${healthBasePath}/delete/${id}`, {});
   return result.data;
 };
