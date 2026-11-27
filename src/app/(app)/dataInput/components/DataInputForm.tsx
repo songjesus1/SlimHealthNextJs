@@ -92,7 +92,7 @@ const DataInputForm = ({ id, formData, handleChange }: DataInputFormProps) => {
         <Text>검진날짜</Text>
         <input
           type="date"
-          value={formData.checkupDate}
+          value={formData.checkupDate ?? ""}
           onChange={(e) => {
             handleChange("checkupDate", e.target.value);
           }}
